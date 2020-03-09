@@ -52,16 +52,15 @@ body {
   flex: 1 0 0;
 }
 
-.posts {
+.films {
   flex: 2 0 0;
 }
 
-.sidebar, .posts {
+.sidebar, .films {
   background: $color-light;
   margin-right: 10px;
   padding: 40px;
-  border: 1px solid $color-dark;
-  border-radius: 5px;
+  border: none;
 }
 
 /* Logo */
@@ -101,18 +100,18 @@ body {
 
 /* Post */
 
-.post {
+.film {
   display: none;
   &.active {
     display: block;
   }
 }
 
-.post-author {
+.film-author {
   font-style: italic;
 }
 
-.post-tags {
+.film-tags {
   display: flex;
   p {
     margin: 0 10px 0 0;
