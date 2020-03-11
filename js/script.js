@@ -21,7 +21,7 @@ function titleClickHandler(event){
 
   /*remove class 'active' from all films */
 
-  const activeArticles = document.querySelectorAll('.posts article.active');
+  const activeArticles = document.querySelectorAll('.films article.active');
   
   for (let activeArticle of activeArticles) {
   activeArticle.classList.remove('active');
@@ -29,15 +29,22 @@ function titleClickHandler(event){
 
   /*get 'href' attribute from the clicked link*/
 
-  const articleSelector = clickedElement.getAtrribute('href');
+  const articleSelector = clickedElement.getAttribute('href');
   console.log(articleSelector);
 
   /*find the correct article using the selector (value of 'href' attribute) */
 
-  const targetArticle = document.querySelector('href');
+  const targetArticle = document.querySelector(articleSelector);
   console.log(targetArticle);
 
   /*add class 'active' to the correct article */
 
   targetArticle.classList.add('active');
 }
+
+const links = document.querySelectorAll('.titles a');
+  console.log(links);
+  
+  for(let link of links){
+    link.addEventListener('click', titleClickHandler);
+  } 
