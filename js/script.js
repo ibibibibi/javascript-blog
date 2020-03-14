@@ -59,14 +59,13 @@ function generateTitleLinks(){
 
     const films = document.querySelectorAll(optFilmSelector);
       // console.log(films);
-  
-    for(let film of films){
-   
+      
       let html = '';
-    
 
+      for(let film of films){
+        
       /* get the film id */
-  
+
         const filmId = film.getAttribute('id');
           // console.log(filmId);
     
@@ -77,21 +76,21 @@ function generateTitleLinks(){
 
       /* create HTML of the link */
 
-        const linkHTML = '<li><a href="# ' + filmId + ' "><span> ' + filmTitle + ' </span></a></li>';
+        const linkHTML = '<li><a href="#' + filmId + ' "><span> ' + filmTitle + ' </span></a></li>';
           // console.log(linkHTML);
 
       /* insert link into titleList */
 
-        titleList.innerHTML = titleList.innerHTML + linkHTML;
+        html = html + linkHTML;
+       /* titleList.innerHTML = titleList.innerHTML + linkHTML; */
     }
+
+    titleList.innerHTML = html;
       
 }
 generateTitleLinks();
-
-
-
 const links = document.querySelectorAll('.titles a');
-  // console.log(links);
+  console.log(links);
 
   for(let link of links){
     link.addEventListener('click', titleClickHandler);
