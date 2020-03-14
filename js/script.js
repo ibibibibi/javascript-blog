@@ -3,8 +3,9 @@
 function titleClickHandler(event){
   event.preventDefault();
   const clickedElement = this;
-  console.log('Link was clicked!'),
-  console.log(event);
+  // console.log('Link was clicked!');
+  // console.log(clickedElement);
+  // console.log(event);
 
   /* remove class 'active' from all films links */
 
@@ -17,34 +18,81 @@ function titleClickHandler(event){
   /* add class 'active' to the clicked link */
 
   clickedElement.classList.add('active');
-  console.log('clickedElement:', clickedElement);
+  //console.log('clickedElement:', clickedElement);
 
   /*remove class 'active' from all films */
 
-  const activeArticles = document.querySelectorAll('.films article.active');
+  const activeFilms = document.querySelectorAll('.films film.active');
   
-  for (let activeArticle of activeArticles) {
-  activeArticle.classList.remove('active');
+  for (let activeFilm of activeFilms) {
+  activeFilm.classList.remove('active');
   }
 
   /*get 'href' attribute from the clicked link*/
 
-  const articleSelector = clickedElement.getAttribute('href');
-  console.log(articleSelector);
+  const filmSelector = clickedElement.getAttribute('href');
+  //console.log(filmSelector);
 
-  /*find the correct article using the selector (value of 'href' attribute) */
+  /*find the correct film using the selector (value of 'href' attribute) */
 
-  const targetArticle = document.querySelector(articleSelector);
-  console.log(targetArticle);
+  const targetFilm = document.querySelector(filmSelector);
+  console.log(targetFilm);
 
-  /*add class 'active' to the correct article */
+  /*add class 'active' to the correct film */
 
-  targetArticle.classList.add('active');
+  targetFilm.classList.add('active');
 }
 
-const links = document.querySelectorAll('.titles a');
-  console.log(links);
+const optFilmSelector = '.film',
+  optTitleSelector = '.film-title',
+  optTitleListSelector = '.titles';
+
+function generateTitleLinks(){
+
+  /* remove contents of titleList */
+
+    const titleList = document.querySelector(optTitleListSelector);
   
+    titleList.innerHTML = '';
+
+  /* for each film */
+
+    const films = document.querySelectorAll(optFilmSelector);
+      // console.log(films);
+  
+    for(let film of films){
+   
+      let html = '';
+    
+
+      /* get the film id */
+  
+        const filmId = film.getAttribute('id');
+          // console.log(filmId);
+    
+      /* find the title element *//* get the title from the title element */
+
+        const filmTitle = film.querySelector(optTitleSelector).innerHTML;
+          // console.log(filmTitle);
+
+      /* create HTML of the link */
+
+        const linkHTML = '<li><a href="# ' + filmId + ' "><span> ' + filmTitle + ' </span></a></li>';
+          // console.log(linkHTML);
+
+      /* insert link into titleList */
+
+        titleList.innerHTML = titleList.innerHTML + linkHTML;
+    }
+      
+}
+generateTitleLinks();
+
+
+
+const links = document.querySelectorAll('.titles a');
+  // console.log(links);
+
   for(let link of links){
     link.addEventListener('click', titleClickHandler);
-  } 
+  }
