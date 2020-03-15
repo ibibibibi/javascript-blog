@@ -102,13 +102,25 @@ const links = document.querySelectorAll('.titles a');
   function generateTags(){
     /* find all articles */
   
+    const films = document.querySelectorAll(optFilmSelector);
+    console.log(films);
+
     /* START LOOP: for every article: */
-  
+      
+      for(let film of films){
+
       /* find tags wrapper */
+
+        const titleList = film.querySelector(optFilmTagsSelector);
   
       /* make html variable with empty string */
-  
+
+        let html = '';
+
       /* get tags from data-tags attribute */
+
+        const filmTags = film.getAttribute('data-tags');
+        console.log(filmTags);
   
       /* split tags into array */
   
@@ -123,6 +135,7 @@ const links = document.querySelectorAll('.titles a');
       /* insert HTML of all the links into the tags wrapper */
   
     /* END LOOP: for every article: */
+      }
   }
   
 generateTags();

@@ -3,11 +3,11 @@
 /* Global */
 *, *::before, *::after { box-sizing: border-box; }
 
-body { background: #fff; font-family: "Source Sans Pro", sans-serif; color: #444; font-weight: 300; font-size: 16px; line-height: 1.7; }
+body { background: #fff; font-family: "Raleway", sans-serif; color: #444; font-weight: 300; font-size: 16px; line-height: 1.7; }
 
 .container { max-width: 1140px; margin: 0 auto; }
 
-.section-title { font-size: 22px; text-transform: uppercase; font-family: "Oswald", sans-serif; font-weight: 600; }
+.section-title { font-size: 22px; text-transform: uppercase; font-family: "Montserrat", sans-serif; font-weight: 600; }
 
 .section-title span { text-transform: none; font-weight: 400; color: #777777; }
 
@@ -21,7 +21,7 @@ body { background: #fff; font-family: "Source Sans Pro", sans-serif; color: #444
 .sidebar, .films { background: #fff; margin-right: 10px; padding: 40px; border: none; }
 
 /* Logo */
-.logo { font-family: "Sacramento", cursive; font-weight: 400; font-size: 104px; line-height: 1; text-align: center; }
+.logo { font-family: "Oxygen", sans-serif; font-weight: 400; font-size: 104px; line-height: 1; text-align: center; }
 
 /* Lists */
 .list { list-style-type: none; margin: 0; padding: 0; }
