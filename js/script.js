@@ -45,7 +45,8 @@ function titleClickHandler(event){
 
 const optFilmSelector = '.film',
   optTitleSelector = '.film-title',
-  optTitleListSelector = '.titles';
+  optTitleListSelector = '.titles',
+  optFilmTagsSelector = '.film-tags .film';
 
 function generateTitleLinks(){
 
@@ -95,3 +96,33 @@ const links = document.querySelectorAll('.titles a');
   for(let link of links){
     link.addEventListener('click', titleClickHandler);
   }
+
+/* GENERATING TAGS*/
+
+  function generateTags(){
+    /* find all articles */
+  
+    /* START LOOP: for every article: */
+  
+      /* find tags wrapper */
+  
+      /* make html variable with empty string */
+  
+      /* get tags from data-tags attribute */
+  
+      /* split tags into array */
+  
+      /* START LOOP: for each tag */
+  
+        /* generate HTML of the link */
+  
+        /* add generated code to html variable */
+  
+      /* END LOOP: for each tag */
+  
+      /* insert HTML of all the links into the tags wrapper */
+  
+    /* END LOOP: for every article: */
+  }
+  
+generateTags();
