@@ -18,11 +18,11 @@ function titleClickHandler(event){
   /* add class 'active' to the clicked link */
 
   clickedElement.classList.add('active');
-  //console.log('clickedElement:', clickedElement);
+  console.log('clickedElement:', clickedElement);
 
   /*remove class 'active' from all films */
 
-  const activeFilms = document.querySelectorAll('.films film.active');
+  const activeFilms = document.querySelectorAll('.films article.active');
   
   for (let activeFilm of activeFilms) {
   activeFilm.classList.remove('active');
@@ -31,7 +31,7 @@ function titleClickHandler(event){
   /*get 'href' attribute from the clicked link*/
 
   const filmSelector = clickedElement.getAttribute('href');
-  //console.log(filmSelector);
+  console.log(filmSelector);
 
   /*find the correct film using the selector (value of 'href' attribute) */
 
@@ -50,7 +50,7 @@ const optFilmSelector = '.film',
   optTitleListSelector = '.titles',
   optFilmTagsSelector = '.film-tags .film';
 
-function generateTitleLinks(){
+function generateTitleLinks(customSelector = ''){
 
   /* remove contents of titleList */
 
@@ -60,8 +60,8 @@ function generateTitleLinks(){
 
   /* for each film */
 
-    const films = document.querySelectorAll(optFilmSelector);
-      // console.log(films);
+    const films = document.querySelectorAll(optFilmSelector + customSelector);
+      console.log(films);
       
       let html = '';
 
@@ -70,12 +70,12 @@ function generateTitleLinks(){
       /* get the film id */
 
         const filmId = film.getAttribute('id');
-          // console.log(filmId);
+          console.log(filmId);
     
       /* find the title element *//* get the title from the title element */
 
         const filmTitle = film.querySelector(optTitleSelector).innerHTML;
-          // console.log(filmTitle);
+          console.log(filmTitle);
 
       /* create HTML of the link */
 
@@ -92,6 +92,7 @@ function generateTitleLinks(){
       
 }
 generateTitleLinks();
+
 const links = document.querySelectorAll('.titles a');
   console.log(links);
 
@@ -114,6 +115,7 @@ const links = document.querySelectorAll('.titles a');
       /* find tags wrapper */
 
         const tagsWrapper = film.querySelector(optFilmTagsSelector);
+        console.log(tagsWrapper);
   
       /* make html variable with empty string */
 
@@ -147,7 +149,7 @@ const links = document.querySelectorAll('.titles a');
       }
       /* insert HTML of all the links into the tags wrapper */
   
-        tagsWrapper.insertAdjacentHTML('beforeend', html);
+        tagsWrapper.inner = html;
 
     /* END LOOP: for every article: */
       }
