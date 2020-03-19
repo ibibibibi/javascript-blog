@@ -18,7 +18,7 @@ function titleClickHandler(event){
   /* add class 'active' to the clicked link */
 
   clickedElement.classList.add('active');
-  console.log('clickedElement:', clickedElement);
+  // console.log('clickedElement:', clickedElement);
 
   /*remove class 'active' from all films */
 
@@ -31,12 +31,12 @@ function titleClickHandler(event){
   /*get 'href' attribute from the clicked link*/
 
   const filmSelector = clickedElement.getAttribute('href');
-  console.log(filmSelector);
+  // console.log(filmSelector);
 
   /*find the correct film using the selector (value of 'href' attribute) */
 
   const targetFilm = document.querySelector(filmSelector);
-  console.log(targetFilm);
+  // console.log(targetFilm);
 
   /*add class 'active' to the correct film */
 
@@ -48,7 +48,7 @@ function titleClickHandler(event){
 const optFilmSelector = '.film',
   optTitleSelector = '.film-title',
   optTitleListSelector = '.titles',
-  optFilmTagsSelector = '.film-tags .film';
+  optFilmTagsSelector = '.film-tags .list';
 
 function generateTitleLinks(customSelector = ''){
 
@@ -61,7 +61,7 @@ function generateTitleLinks(customSelector = ''){
   /* for each film */
 
     const films = document.querySelectorAll(optFilmSelector + customSelector);
-      console.log(films);
+      // console.log(films);
       
       let html = '';
 
@@ -70,17 +70,17 @@ function generateTitleLinks(customSelector = ''){
       /* get the film id */
 
         const filmId = film.getAttribute('id');
-          console.log(filmId);
+          // console.log(filmId);
     
       /* find the title element *//* get the title from the title element */
 
         const filmTitle = film.querySelector(optTitleSelector).innerHTML;
-          console.log(filmTitle);
+          // console.log(filmTitle);
 
       /* create HTML of the link */
 
         const linkHTML = '<li><a href="#' + filmId + ' "><span> ' + filmTitle + ' </span></a></li>';
-          console.log(linkHTML);
+          // console.log(linkHTML);
 
       /* insert link into titleList */
 
@@ -94,7 +94,7 @@ function generateTitleLinks(customSelector = ''){
 generateTitleLinks();
 
 const links = document.querySelectorAll('.titles a');
-  console.log(links);
+  // console.log(links);
 
   for(let link of links){
     link.addEventListener('click', titleClickHandler);
@@ -102,20 +102,20 @@ const links = document.querySelectorAll('.titles a');
 
 /* GENERATING TAGS*/
 
-  function generateTags(){
-    /* find all articles */
+function generateTags(){
+  /* find all articles */
   
     const films = document.querySelectorAll(optFilmSelector);
-    console.log(films);
+    // console.log(films);
 
     /* START LOOP: for every article: */
       
       for(let film of films){
 
       /* find tags wrapper */
-
+        // console.log('film', film)
         const tagsWrapper = film.querySelector(optFilmTagsSelector);
-        console.log(tagsWrapper);
+        // console.log(tagsWrapper);
   
       /* make html variable with empty string */
 
@@ -124,7 +124,7 @@ const links = document.querySelectorAll('.titles a');
       /* get tags from data-tags attribute */
 
         const filmTags = film.getAttribute('data-tags');
-        console.log(filmTags);
+        // console.log(filmTags);
   
       /* split tags into array */
   
@@ -133,23 +133,25 @@ const links = document.querySelectorAll('.titles a');
       /* START LOOP: for each tag */
 
         for(let tag of filmTagsArray){
-          console.log(tag)
+          // console.log(tag)
   
         /* generate HTML of the link */
   
-        const linkHTML = '<li><a href="#tag-"><span> ' + filmTags + ' </span></a></li>';
-        console.log(linkHTML);
+        const linkHTML = '<li><a href="#tag-' + tag + '"><span> ' + tag + ' </span></a></li>';
+        
+        // console.log(linkHTML);
 
         /* add generated code to html variable */
 
         html = html + linkHTML;
-        console.log(html);
+        // console.log(html);
       
       /* END LOOP: for each tag */
       }
       /* insert HTML of all the links into the tags wrapper */
-  
-        tagsWrapper.inner = html;
+        
+        tagsWrapper.innerHTML = html;
+        // console.log(tagsWrapper)
 
     /* END LOOP: for every article: */
       }
@@ -159,10 +161,17 @@ generateTags();
 
 function tagClickHandler(event){
   /* prevent default action for this event */
+ 
+   event.preventDefault();
 
   /* make new constant named "clickedElement" and give it the value of "this" */
+  
+    const clickedElement = this;
 
   /* make a new constant "href" and read the attribute "href" of the clicked element */
+
+    const hrefAttribute = clickedElement.getAttribute('href');
+    console.log(hrefAttribute) 
 
   /* make a new constant "tag" and extract tag from the "href" constant */
 
@@ -188,11 +197,20 @@ function tagClickHandler(event){
 function addClickListenersToTags(){
   /* find all links to tags */
 
+    const links = document.querySelectorAll('a[href^="#tag-"]');
+    console.log(links)
+
   /* START LOOP: for each link */
+
+    for(let link of links){
 
     /* add tagClickHandler as event listener for that link */
 
+      link.addEventListener('click', tagClickHandler);
+
   /* END LOOP: for each link */
+    }
 }
+
 
 addClickListenersToTags();
