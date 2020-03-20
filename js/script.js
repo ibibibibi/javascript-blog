@@ -170,35 +170,57 @@ function tagClickHandler(event){
 
   /* make a new constant "href" and read the attribute "href" of the clicked element */
 
-    const hrefAttribute = clickedElement.getAttribute('href');
-    console.log(hrefAttribute) 
+    const href = clickedElement.getAttribute('href');
+    // console.log(hrefAttribute) 
 
   /* make a new constant "tag" and extract tag from the "href" constant */
 
+    const tag = href.replace('#tag-', '');
+
   /* find all tag links with class active */
+
+    const tagLinks = document.querySelectorAll('a.active[href^="#tag-"]');
 
   /* START LOOP: for each active tag link */
 
+    for (let tagLink of tagLinks){
+
     /* remove class active */
+
+      tagLink.classList.remove('active');
 
   /* END LOOP: for each active tag link */
 
+    }
+
   /* find all tag links with "href" attribute equal to the "href" constant */
+
+      const hrefTagLinks = document.querySelectorAll('a.active[href="' + href + '"]');
 
   /* START LOOP: for each found tag link */
 
+      for(let hrefTagLink of hrefTagLinks){
+
     /* add class active */
+
+      hrefTagLink.classList.add('active');
 
   /* END LOOP: for each found tag link */
 
+      }
+
   /* execute function "generateTitleLinks" with article selector as argument */
+
+      generateTitleLinks('[data-tags~="' + tag + '"]');
+
 }
+
 
 function addClickListenersToTags(){
   /* find all links to tags */
 
     const links = document.querySelectorAll('a[href^="#tag-"]');
-    console.log(links)
+    // console.log(links)
 
   /* START LOOP: for each link */
 

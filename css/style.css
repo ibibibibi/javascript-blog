@@ -80,6 +80,10 @@ body {
   display: inline-block;
 }
 
+.list-horizontal li span {
+  padding: 0 3px;
+}
+
 /* Authors */
 .authors li {
   margin-bottom: 12px;
