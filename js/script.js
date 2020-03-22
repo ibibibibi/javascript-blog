@@ -48,8 +48,9 @@ function titleClickHandler(event){
 const optFilmSelector = '.film',
   optTitleSelector = '.film-title',
   optTitleListSelector = '.titles',
-  optFilmTagsSelector = '.film-tags .list';
-  optFilmAuthorsSelector = '.film .film-author';
+  optFilmTagsSelector = '.film-tags .list',
+  optFilmAuthorsSelector = '.film .film-author',
+  optAuthorsListSelector = '.authors.list';
 
 function generateTitleLinks(customSelector = ''){
 
@@ -220,7 +221,7 @@ function addClickListenersToTags(){
   /* find all links to tags */
 
     const links = document.querySelectorAll('a[href^="#tag-"]');
-    console.log(links)
+    //console.log(links)
 
   /* START LOOP: for each link */
 
@@ -245,7 +246,7 @@ function generateAuthors() {
   /* find all films */
   
   const films = document.querySelectorAll(optFilmSelector);
-    console.log(films);
+    //console.log(films);
 
   /* START LOOP: for every film: */
   
@@ -267,7 +268,7 @@ function generateAuthors() {
 
     /* generate HTML of the link */
 
-    const linkHTML = '<li><a href="#author-' + author + '"><span> ' + author + ' </span></a></li>';
+    const linkHTML = '<li><a href="#author-' + author + '">' + author + '</a></li>';
     console.log(linkHTML);
 
     /* add generated code to html variable */
@@ -277,21 +278,21 @@ function generateAuthors() {
   
     /* insert HTML of all the links into the tags wrapper */
     
-    authorWrapper.innerHTML = html;
-    console.log(tagsWrapper)
+    authorsWrapper.innerHTML = html;
+    console.log(authorsWrapper)
 
   /* END LOOP: for every article: */
   }
 
 
-  const authorListWrapper = document.querySelector(optAuthorsListSelector);
+  const authorsListWrapper = document.querySelector(optAuthorsListSelector);
   console.log (authorsListWrapper);
 
   const authors = document.querySelectorAll('.authors a')
   console.log (authors);
 
   for(let author of authors){
-    author.addEventListener('click', authorClickHAndler);
+    author.addEventListener('click', authorClickHandler);
   }
 
 }
