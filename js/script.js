@@ -50,7 +50,8 @@ const optFilmSelector = '.film',
   optTitleListSelector = '.titles',
   optFilmTagsSelector = '.film-tags .list',
   optFilmAuthorsSelector = '.film .film-author',
-  optAuthorsListSelector = '.authors.list';
+  optAuthorsListSelector = '.authors.list',
+  optTagsListSelector = '.tags .list';
 
 function generateTitleLinks(customSelector = ''){
 
@@ -105,6 +106,11 @@ const links = document.querySelectorAll('.titles a');
 /* GENERATING TAGS*/
 
 function generateTags(){
+
+  /* [NEW] create a new variable allTags with an empty array */
+  
+  let allTags = [];
+
   /* find all articles */
   
     const films = document.querySelectorAll(optFilmSelector);
@@ -147,9 +153,27 @@ function generateTags(){
 
         html = html + linkHTML;
         // console.log(html);
+
+        /* [NEW] check if this link is NOT already in allTags */
+      
+          if(allTags.indexOf(linkHTML) == -1){
+        
+          /* [NEW] add generated code to allTags array */
+            
+            allTags.push(linkHTML);
+        }
       
       /* END LOOP: for each tag */
       }
+
+      /* [NEW] find list of tags in right column */
+      
+        const tagList = document.querySelector('.tags');
+
+      /* [NEW] add html from allTags to tagList */
+  
+        tagList.innerHTML = allTags.join(' ');
+
       /* insert HTML of all the links into the tags wrapper */
         
         tagsWrapper.innerHTML = html;
