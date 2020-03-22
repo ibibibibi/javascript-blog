@@ -318,7 +318,7 @@ function authorClickHandler(event){
   
     /* find all author links with class active */
   
-    const authorLinks = document.querySelectorAll('a.active[href^="#author-"]');
+    const authorLink = document.querySelectorAll('a.active[href^="#author-"]');
   
       /* START LOOP: for each active author link */
   
@@ -350,7 +350,7 @@ function authorClickHandler(event){
   
     /* execute function "generateTitleLinks" with article selector as argument */
   
-      generateTitleLinks('[data-tags="' + author + '"]');
+      generateTitleLinks('[data-author="' + author + '"]');
   
   }
   
