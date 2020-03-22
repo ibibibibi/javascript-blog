@@ -49,8 +49,7 @@ const optFilmSelector = '.film',
   optTitleSelector = '.film-title',
   optTitleListSelector = '.titles',
   optFilmTagsSelector = '.film-tags .list';
-  
-
+  optFilmAuthorsSelector = '.film .film-author';
 
 function generateTitleLinks(customSelector = ''){
 
@@ -172,8 +171,8 @@ function tagClickHandler(event){
 
   /* make a new constant "href" and read the attribute "href" of the clicked element */
 
-    const hrefAttribute = clickedElement.getAttribute('href');
-    console.log(hrefAttribute) 
+    const href = clickedElement.getAttribute('href');
+    console.log(href) 
 
   /* make a new constant "tag" and extract tag from the "href" constant */
 
