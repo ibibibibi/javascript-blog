@@ -49,6 +49,8 @@ const optFilmSelector = '.film',
   optTitleSelector = '.film-title',
   optTitleListSelector = '.titles',
   optFilmTagsSelector = '.film-tags .list';
+  optFilmAuthorSelector = '.film .film-author';
+  optAuthorsListSelector = '.tags .list';
 
 function generateTitleLinks(customSelector = ''){
 
@@ -103,17 +105,18 @@ const links = document.querySelectorAll('.titles a');
 /* GENERATING TAGS*/
 
 function generateTags(){
-  /* find all articles */
+
+  /* find all films */
   
     const films = document.querySelectorAll(optFilmSelector);
     // console.log(films);
 
-    /* START LOOP: for every article: */
+    /* START LOOP: for every film: */
       
       for(let film of films){
 
       /* find tags wrapper */
-        // console.log('film', film)
+  
         const tagsWrapper = film.querySelector(optFilmTagsSelector);
         // console.log(tagsWrapper);
   
@@ -171,7 +174,7 @@ function tagClickHandler(event){
   /* make a new constant "href" and read the attribute "href" of the clicked element */
 
     const href = clickedElement.getAttribute('href');
-    // console.log(hrefAttribute) 
+    // console.log(href) 
 
   /* make a new constant "tag" and extract tag from the "href" constant */
 
@@ -234,5 +237,54 @@ function addClickListenersToTags(){
     }
 }
 
-
 addClickListenersToTags();
+
+/*GENERATING AUTHORS*/
+/*GENERATING AUTHORS*/
+/*GENERATING AUTHORS*/
+
+function generateAuthors() {
+
+  /* find all films */
+  
+  const films = document.querySelectorAll(optFilmSelector);
+    console.log(films);
+
+  /* START LOOP: for every film: */
+  
+    for(let film of films){
+
+    /* find authors wrapper */
+    
+    const authorsWrapper = film.querySelector(optFilmAuthorsSelector);
+    console.log(authorsWrapper);
+
+    /* make html variable with empty string */
+
+    let html = '';
+
+    /* get authors from data-author attribute */
+
+    const author = film.getAttribute('data-author');
+    console.log(author);
+
+    /* generate HTML of the link */
+
+    const linkHTML = '<li><a href="#author-' + author + '"><span> ' + author + ' </span></a></li>';
+    console.log(linkHTML);
+
+    /* add generated code to html variable */
+
+    html = html + linkHTML;
+    console.log(html);
+  
+    /* insert HTML of all the links into the tags wrapper */
+    
+    authorWrapper.innerHTML = html;
+    console.log(tagsWrapper)
+
+  /* END LOOP: for every article: */
+  }
+}
+
+generateAuthors();
