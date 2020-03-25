@@ -11,9 +11,9 @@ function titleClickHandler(event){
 
   const activeLinks = document.querySelectorAll('.titles a.active');
   
-  for (let activeLink of activeLinks) {
-  activeLink.classList.remove('active');
-}
+    for (let activeLink of activeLinks) {
+      activeLink.classList.remove('active');
+    }
 
   /* add class 'active' to the clicked link */
 
@@ -58,7 +58,8 @@ function generateTitleLinks(customSelector = ''){
   /* remove contents of titleList */
 
     const titleList = document.querySelector(optTitleListSelector);
-  
+    //console.log(titleList);
+
     titleList.innerHTML = '';
 
   /* for each film */
@@ -77,7 +78,8 @@ function generateTitleLinks(customSelector = ''){
     
       /* find the title element *//* get the title from the title element */
 
-        const filmTitle = film.querySelector(optTitleSelector).innerHTML;
+        const filmTitleSelector = film.querySelector(optTitleSelector);
+        const filmTitle = filmTitleSelector.innerHTML;
           // console.log(filmTitle);
 
       /* create HTML of the link */
@@ -137,6 +139,7 @@ function generateTags(){
       /* split tags into array */
   
         const filmTagsArray = filmTags.split(' ');
+        // console.log(filmTagsArray)
 
       /* START LOOP: for each tag */
 
@@ -152,7 +155,7 @@ function generateTags(){
 
         html = html + linkHTML;
         // console.log(html);
-
+        //console.log (allTags);
         /* [NEW] check if this link is NOT already in allTags */
       
           if(!allTags.hasOwnProperty(tag)){
@@ -175,6 +178,9 @@ function generateTags(){
 
       /* [NEW][NEW] create var for all links HTML code*/
 
+        const tagsParams = calculateTagsParams(allTags);
+        console.log('tagsParams:', tagsParams)
+
         let allTagsHTML = '';
 
       /* [NEW][NEW] START LOOP: for each tag in allTags */
@@ -196,7 +202,7 @@ function generateTags(){
       /* insert HTML of all the links into the tags wrapper */
         
         tagsWrapper.innerHTML = html;
-        console.log(tagsWrapper)
+        //console.log(tagsWrapper)
 
     /* END LOOP: for every article: */
       }
@@ -216,7 +222,7 @@ function tagClickHandler(event){
   /* make a new constant "href" and read the attribute "href" of the clicked element */
 
     const href = clickedElement.getAttribute('href');
-    console.log(href) 
+    //console.log(href) 
 
   /* make a new constant "tag" and extract tag from the "href" constant */
 
@@ -256,15 +262,15 @@ function tagClickHandler(event){
 
   /* execute function "generateTitleLinks" with article selector as argument */
 
-      generateTitleLinks('[data-tags~="' + tag + '"]');
+  generateTitleLinks('[data-tags~="' + tag + '"]');
 
 }
 
 function addClickListenersToTags(){
   /* find all links to tags */
 
-    const tagLinks = document.querySelectorAll('.tags .list a');
-    console.log(tagLinks)
+    const tagLinks = document.querySelectorAll('a[href^="#tag-"]');
+    //console.log(tagLinks)
 
   /* START LOOP: for each link */
 
@@ -288,48 +294,47 @@ function generateAuthors() {
 
   /* find all films */
   
-  const films = document.querySelectorAll(optFilmSelector);
+    const authorsList = document.querySelector(optAuthorsListSelector);
+    
+    const films = document.querySelectorAll(optFilmSelector);
     //console.log(films);
+
+  /* make html variable with empty string */
+
+    let html = '';
 
   /* START LOOP: for every film: */
   
     for(let film of films){
-
-    /* find authors wrapper */
     
-    const authorsWrapper = film.querySelector(optFilmAuthorsSelector);
-    //console.log(authorsWrapper);
+      /* find authors wrapper */
+    
+        const authorsWrapper = film.querySelector(optFilmAuthorsSelector);
 
-    /* make html variable with empty string */
+      /* get authors from data-author attribute */
 
-    let html = '';
+        const author = film.getAttribute('data-author');
+        //console.log(author);
 
-    /* get authors from data-author attribute */
+      /* generate HTML of the link */
 
-    const author = film.getAttribute('data-author');
-    //console.log(author);
+        const linkHTML = '<li><a href="#author-' + author + '">' + author + '</a></li>';
+        //console.log(linkHTML);
 
-    /* generate HTML of the link */
+      /* add generated code to html variable */
 
-    const linkHTML = '<li><a href="#author-' + author + '">' + author + '</a></li>';
-    //console.log(linkHTML);
-
-    /* add generated code to html variable */
-
-    html = html + linkHTML;
-    //console.log(html);
+        html = html + linkHTML;
+        //console.log(html);
   
-    /* insert HTML of all the links into the tags wrapper */
+      /* insert HTML of all the links into the tags wrapper */
     
-    authorsWrapper.innerHTML = html;
-    //console.log(authorsWrapper)
+        authorsWrapper.innerHTML = html;
+        //console.log(authorsWrapper)
 
-  /* END LOOP: for every article: */
-  }
+    /* END LOOP: for every article: */
+    }
 
-
-  const authorsListWrapper = document.querySelector(optAuthorsListSelector);
-  //console.log (authorsListWrapper);
+  authorsList.innerHTML = html;
 
   const authors = document.querySelectorAll('.authors a')
   //console.log (authors);
@@ -377,7 +382,7 @@ function authorClickHandler(event){
   
     /* find all author links with "href" attribute equal to the "href" constant */
   
-      const hrefAuthorLinks = document.querySelectorAll('a.active[href="' + href + '"]');
+      const hrefAuthorLinks = document.querySelectorAll('a[href="' + href + '"]');
   
     /* START LOOP: for each found author link */
   
@@ -396,24 +401,12 @@ function authorClickHandler(event){
       generateTitleLinks('[data-author="' + author + '"]');
   
   }
-  
-  
-  function addClickListenersToAuthors(){
-  /* find all links to authors */
-  
-    const links = document.querySelectorAll('a[href^="#author-"]');
-    // console.log(links)
-  
-    /* START LOOP: for each link */
-  
-      for(let link of links){
-  
-      /* add authorClickHandler as event listener for that link */
-  
-      link.addEventListener('click', tagClickHandler);
-  
-    /* END LOOP: for each link */
-    }
+
+/*CALCULATE TAGS PARAMS*/
+/*CALCULATE TAGS PARAMS*/
+/*CALCULATE TAGS PARAMS*/
+
+  function calculateTagsParams(){
+
+
   }
-  
-  addClickListenersToAuthors();
