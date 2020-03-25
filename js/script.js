@@ -330,6 +330,14 @@ function generateAuthors() {
     
         authorsWrapper.innerHTML = html;
         //console.log(authorsWrapper)
+    
+      /*if*/
+      
+        if(!authorsList.hasOwnProperty(author)){
+          authorsList[author] = 1;
+        } else {
+          authorsList[author]++;
+        }
 
     /* END LOOP: for every article: */
     }
