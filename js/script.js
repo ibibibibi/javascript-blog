@@ -179,7 +179,7 @@ function generateTags(){
       /* [NEW][NEW] create var for all links HTML code*/
 
         const tagsParams = calculateTagsParams(allTags);
-        console.log('tagsParams:', tagsParams)
+        console.log('tagsParams:', tagsParams);
 
         let allTagsHTML = '';
 
@@ -292,6 +292,8 @@ addClickListenersToTags();
 
 function generateAuthors() {
 
+  let allAuthors = {};
+
   /* find all films */
   
     const authorsList = document.querySelector(optAuthorsListSelector);
@@ -331,12 +333,12 @@ function generateAuthors() {
         authorsWrapper.innerHTML = html;
         //console.log(authorsWrapper)
     
-      /*if*/
+      /* check if author is not already on the list */
       
-        if(!authorsList.hasOwnProperty(author)){
-          authorsList[author] = 1;
+        if(!allAuthors.hasOwnProperty(author)){
+          allAuthors[author] = 1;
         } else {
-          authorsList[author]++;
+          allAuthors[author]++;
         }
 
     /* END LOOP: for every article: */
@@ -414,7 +416,21 @@ function authorClickHandler(event){
 /*CALCULATE TAGS PARAMS*/
 /*CALCULATE TAGS PARAMS*/
 
-  function calculateTagsParams(){
+  function calculateTagsParams(tags){
 
+    const params = {
+      max: '0',
+      min: '999999'
+    };
 
+    for(let tag in tags){
+      console.log(tag + ' is used ' + tags[tag] + ' times');
+      
+      if(tags[tag] > params.max){
+        params.max = tags[tag];
+      } if(tags[tag] > params.min){
+        params.min = tags[tag];
+      }
+      return params;
+    }
   }
