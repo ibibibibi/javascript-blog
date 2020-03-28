@@ -51,7 +51,9 @@ const optFilmSelector = '.film',
   optFilmTagsSelector = '.film-tags .list',
   optFilmAuthorsSelector = '.film .film-author',
   optAuthorsListSelector = '.authors.list',
-  optTagsListSelector = '.tags .list';
+  optTagsListSelector = '.tags .list',
+  optCloudClassCount = '5',
+  optCloudClassPrefix = 'tag-size-';
 
 function generateTitleLinks(customSelector = ''){
 
@@ -90,7 +92,7 @@ function generateTitleLinks(customSelector = ''){
       /* insert link into titleList */
 
         html = html + linkHTML;
-       /* titleList.innerHTML = titleList.innerHTML + linkHTML; */
+       //titleList.innerHTML = titleList.innerHTML + linkHTML;
     }
 
     titleList.innerHTML = html;
@@ -104,6 +106,12 @@ const links = document.querySelectorAll('.titles a');
   for(let link of links){
     link.addEventListener('click', titleClickHandler);
   }
+
+/* CALCULATE TAG CLASS */
+
+function calculateTagClass (count, params) {
+
+}
 
 /* GENERATING TAGS*/
 
@@ -189,7 +197,13 @@ function generateTags(){
 
           /* [NEW][NEW] generate code of a link and add it to allTagsHTML */
 
+          //const tagLinkHTML = '<li>' + calculateTagClass(allTags[tag], tagsParams) + '</li>';
+          
+          //console.log('tagLinkHTML:', tagLinkHTML);
+
           allTagsHTML += '<li><a href="#tag-' + tag + '">' + tag + ' (' + allTags[tag] + ') ' + '</a></li>';
+
+          //allTagsHTML += tagLinkHTML;
           
 
       /* [NEW][NEW] END LOOP: for each tag in allTags: */
@@ -330,7 +344,10 @@ function generateAuthors() {
 
         const linkHTML = '<li><a href="#author-' + author + '">' + author + '</a></li>';
         console.log(linkHTML);
-  
+
+      /* generate author name under the film title */
+        html = html + linkHTML;
+        
       /* insert HTML of all the links into the tags wrapper */
     
         authorsWrapper.innerHTML = html;
