@@ -318,21 +318,6 @@ function generateAuthors() {
         const author = film.getAttribute('data-author');
         //console.log(author);
 
-      /* generate HTML of the link */
-
-        const linkHTML = '<li><a href="#author-' + author + '">' + author + '</a></li>';
-        //console.log(linkHTML);
-
-      /* add generated code to html variable */
-
-        html = html + linkHTML;
-        //console.log(html);
-  
-      /* insert HTML of all the links into the tags wrapper */
-    
-        authorsWrapper.innerHTML = html;
-        //console.log(authorsWrapper)
-    
       /* check if author is not already on the list */
       
         if(!allAuthors.hasOwnProperty(author)){
@@ -341,7 +326,21 @@ function generateAuthors() {
           allAuthors[author]++;
         }
 
+      /* generate HTML of the link */
+
+        const linkHTML = '<li><a href="#author-' + author + '">' + author + '</a></li>';
+        console.log(linkHTML);
+  
+      /* insert HTML of all the links into the tags wrapper */
+    
+        authorsWrapper.innerHTML = html;
+        //console.log(authorsWrapper)
+
     /* END LOOP: for every article: */
+    }
+
+    for(let author in allAuthors){
+      html += '<li><a href="#author-' + author + '">' + author + '</a></li>'
     }
 
   authorsList.innerHTML = html;
@@ -424,13 +423,10 @@ function authorClickHandler(event){
     };
 
     for(let tag in tags){
-      console.log(tag + ' is used ' + tags[tag] + ' times');
+      //console.log(tag + ' is used ' + tags[tag] + ' times');
       
-      if(tags[tag] > params.max){
-        params.max = tags[tag];
-      } if(tags[tag] > params.min){
-        params.min = tags[tag];
-      }
-      return params;
+      params.max = Math.max(tags[tag], params.max);
+      params.min = Math.min(tags[tag], params.min);
     }
+    // return params;
   }
