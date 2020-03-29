@@ -322,9 +322,7 @@ function generateAuthors() {
     const films = document.querySelectorAll(optFilmSelector);
     //console.log(films);
 
-  /* make html variable with empty string */
-
-    let html = '';
+  
 
   /* START LOOP: for every film: */
   
@@ -332,12 +330,17 @@ function generateAuthors() {
     
       /* find authors wrapper */
     
-        const authorsWrapper = film.querySelector(optFilmAuthorsSelector);
+        const authorWrapper = film.querySelector(optFilmAuthorsSelector);
 
       /* get authors from data-author attribute */
 
         const author = film.getAttribute('data-author');
         //console.log(author);
+
+        /* generate HTML of the link */
+
+        const linkHTML = '<li><a href="#author-' + author + '">' + author + '</a></li>';
+        //console.log(linkHTML);
 
       /* check if author is not already on the list */
       
@@ -347,28 +350,30 @@ function generateAuthors() {
           allAuthors[author]++;
         }
 
-      /* generate HTML of the link */
-
-        const linkHTML = '<li><a href="#author-' + author + '">' + author + '</a></li>';
-        //console.log(linkHTML);
+      
 
       /* generate author name under the film title */
-        html = html + linkHTML;
-        console.log(html)
+        //html = html + linkHTML;
+       // console.log(html)
 
       /* insert HTML of all the links into the authors wrapper */
     
-        authorsWrapper.innerHTML = html;
-        //console.log(authorsWrapper)
+        authorWrapper.insertAdjacentHTML('beforeend', linkHTML);
+  
+        //console.log(authorWrapper)
 
     /* END LOOP: for every film: */
     }
 
+    /* make html variable with empty string */
+
+    let authorsHtml = '';
+
     for(let author in allAuthors){
-      html += '<li><a href="#author-' + author + '">' + author + '</a></li>'
+      authorsHtml += '<li><a href="#author-' + author + '">' + author + '</a></li>'
     }
 
-  authorsList.innerHTML = html;
+  authorsList.innerHTML = authorsHtml;
 
   const authors = document.querySelectorAll('.authors a')
   //console.log (authors);
