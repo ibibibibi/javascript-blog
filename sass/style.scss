@@ -2,8 +2,12 @@
 
 /* Variables */
 
-$color-light: #fff;
-$color-dark: #444;
+$color-light: white;
+$color-dark: #131306;
+$color-yellow: #B0973B;
+$color-beige: #E6D4B3;
+$color-ultra: #0A181F;
+$color-blue: #324195;
 
 $font-header: 'Montserrat', sans-serif;
 $font-text: 'Raleway', sans-serif;
@@ -96,6 +100,15 @@ body {
 
 /* Authors */
 
+a {
+  text-decoration: none;
+  color: $color-ultra;
+}
+
+a:hover {
+  color: $color-yellow;
+}
+
 .authors {
   li {
     margin-bottom: 12px;
@@ -113,11 +126,23 @@ body {
 
 .film-author {
   font-style: italic;
+
+  li {
+    list-style: none;
+  }
 }
 
 .film-tags {
   display: flex;
   p {
     margin: 0 10px 0 0;
+  }
+}
+
+.film-photo {
+  
+  img {
+    object-fit: cover;
+    max-width: 100%;
   }
 }

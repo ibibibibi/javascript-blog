@@ -6,9 +6,9 @@
 }
 
 body {
-  background: #fff;
+  background: white;
   font-family: "Raleway", sans-serif;
-  color: #444;
+  color: #131306;
   font-weight: 300;
   font-size: 16px;
   line-height: 1.7;
@@ -29,7 +29,7 @@ body {
 .section-title span {
   text-transform: none;
   font-weight: 400;
-  color: #777777;
+  color: #61611e;
 }
 
 /* Layout */
@@ -50,7 +50,7 @@ body {
 }
 
 .sidebar, .films {
-  background: #fff;
+  background: white;
   margin-right: 10px;
   padding: 40px;
   border: none;
@@ -85,6 +85,15 @@ body {
 }
 
 /* Authors */
+a {
+  text-decoration: none;
+  color: #0A181F;
+}
+
+a:hover {
+  color: #B0973B;
+}
+
 .authors li {
   margin-bottom: 12px;
 }
@@ -102,6 +111,10 @@ body {
   font-style: italic;
 }
 
+.film-author li {
+  list-style: none;
+}
+
 .film-tags {
   display: -ms-flexbox;
   display: flex;
@@ -109,5 +122,10 @@ body {
 
 .film-tags p {
   margin: 0 10px 0 0;
+}
+
+.film-photo img {
+  object-fit: cover;
+  max-width: 100%;
 }
 /*# sourceMappingURL=style.css.map */
