@@ -52,7 +52,7 @@ const optFilmSelector = '.film',
   optFilmAuthorsSelector = '.film .film-author',
   optAuthorsListSelector = '.authors.list',
   optTagsListSelector = '.tags .list',
-  optCloudClassCount = '5',
+  optCloudClassCount = '4',
   optCloudClassPrefix = 'tag-size-';
 
 function generateTitleLinks(customSelector = ''){
@@ -110,7 +110,14 @@ const links = document.querySelectorAll('.titles a');
 /* CALCULATE TAG CLASS */
 
 function calculateTagClass (count, params) {
-
+  const normalizedCount = count - params.min;
+  const normalizedMax = params.max - params.min;
+  const percentage = normalizedCount / normalizedMax;
+  classNumber = Math.floor( ( (count - params.min) / (params.max - params.min) ) * optCloudClassCount + 1 );
+  const classValue = optcloudClassPrefix + classNumber;
+  console.log(classValue);
+  return classValue;
+  
 }
 
 /* GENERATING TAGS*/
@@ -187,7 +194,7 @@ function generateTags(){
       /* [NEW][NEW] create var for all links HTML code*/
 
         const tagsParams = calculateTagsParams(allTags);
-        console.log('tagsParams:', tagsParams);
+        //console.log('tagsParams:', tagsParams);
 
         let allTagsHTML = '';
 
@@ -343,17 +350,18 @@ function generateAuthors() {
       /* generate HTML of the link */
 
         const linkHTML = '<li><a href="#author-' + author + '">' + author + '</a></li>';
-        console.log(linkHTML);
+        //console.log(linkHTML);
 
       /* generate author name under the film title */
         html = html + linkHTML;
-        
-      /* insert HTML of all the links into the tags wrapper */
+        console.log(html)
+
+      /* insert HTML of all the links into the authors wrapper */
     
         authorsWrapper.innerHTML = html;
         //console.log(authorsWrapper)
 
-    /* END LOOP: for every article: */
+    /* END LOOP: for every film: */
     }
 
     for(let author in allAuthors){
