@@ -56,28 +56,29 @@ function titleClickHandler(event){
 //   optCloudClassPrefix = 'tag-size-';
 
 const opt = {
-  titleSelector = '.film',
-  optTitleListSelector = '.titles',
-  FilmTagsSelector = '.film-tags .list',
-  filmAuthorsSelector = '.film .film-author',
-  futhorsListSelector = '.authors.list',
-  tagsListSelector = '.tags .list',
-  cloudClassCount = '4',
-  cloudClassPrefix = 'tag-size-'
+  filmSelector: '.film',
+  titleSelector: '.film-title',
+  titleListSelector: '.titles',
+  filmTagsSelector: '.film-tags .list',
+  filmAuthorsSelector: '.film .film-author',
+  authorsListSelector: '.authors.list',
+  tagsListSelector: '.tags .list',
+  cloudClassCount: 4,
+  cloudClassPrefix: 'tag-size-'
 };
 
 function generateTitleLinks(customSelector = ''){
 
   /* remove contents of titleList */
 
-    const titleList = document.querySelector(optTitleListSelector);
+    const titleList = document.querySelector(opt.titleListSelector);
     //console.log(titleList);
 
     titleList.innerHTML = '';
 
   /* for each film */
 
-    const films = document.querySelectorAll(optFilmSelector + customSelector);
+    const films = document.querySelectorAll(opt.filmSelector + customSelector);
       // console.log(films);
       
       let html = '';
@@ -91,7 +92,7 @@ function generateTitleLinks(customSelector = ''){
     
       /* find the title element *//* get the title from the title element */
 
-        const filmTitleSelector = film.querySelector(optTitleSelector);
+        const filmTitleSelector = film.querySelector(opt.titleSelector);
         const filmTitle = filmTitleSelector.innerHTML;
           // console.log(filmTitle);
 
@@ -152,8 +153,8 @@ function calculateTagClass (count, params) {
   const normalizedCount = count - params.min;
   const normalizedMax = params.max - params.min;
   const percentage = normalizedCount / normalizedMax;
-  const classNumber = Math.floor(percentage * (optcloudClassCount - 1) + 1);
-  const classValue = optcloudClassPrefix + classNumber;
+  const classNumber = Math.floor(percentage * (opt.cloudClassCount - 1) + 1);
+  const classValue = opt.cloudClassPrefix + classNumber;
   console.log(classValue);
 
   return classValue;
@@ -169,7 +170,7 @@ function generateTags(){
 
   /* find all articles */
   
-    const films = document.querySelectorAll(optFilmSelector);
+    const films = document.querySelectorAll(opt.filmSelector);
     // console.log(films);
 
     /* START LOOP: for every article: */
@@ -178,7 +179,7 @@ function generateTags(){
 
       /* find tags wrapper */
         // console.log('film', film)
-        const tagsWrapper = film.querySelector(optFilmTagsSelector);
+        const tagsWrapper = film.querySelector(opt.filmTagsSelector);
         // console.log(tagsWrapper);
   
       /* make html variable with empty string */
@@ -356,9 +357,9 @@ function generateAuthors() {
 
   /* find all films */
   
-    const authorsList = document.querySelector(optAuthorsListSelector);
+    const authorsList = document.querySelector(opt.authorsListSelector);
     
-    const films = document.querySelectorAll(optFilmSelector);
+    const films = document.querySelectorAll(opt.filmSelector);
     //console.log(films);
 
   
@@ -369,7 +370,7 @@ function generateAuthors() {
     
       /* find authors wrapper */
     
-        const authorWrapper = film.querySelector(optFilmAuthorsSelector);
+        const authorWrapper = film.querySelector(opt.filmAuthorsSelector);
 
       /* get authors from data-author attribute */
 
