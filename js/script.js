@@ -45,15 +45,26 @@ function titleClickHandler(event){
 
 /*GENERATING TITLE LINKS*/
 
-const optFilmSelector = '.film',
-  optTitleSelector = '.film-title',
+// const optFilmSelector = '.film',
+//   optTitleSelector = '.film-title',
+//   optTitleListSelector = '.titles',
+//   optFilmTagsSelector = '.film-tags .list',
+//   optFilmAuthorsSelector = '.film .film-author',
+//   optAuthorsListSelector = '.authors.list',
+//   optTagsListSelector = '.tags .list',
+//   optCloudClassCount = '4',
+//   optCloudClassPrefix = 'tag-size-';
+
+const opt = {
+  titleSelector = '.film',
   optTitleListSelector = '.titles',
-  optFilmTagsSelector = '.film-tags .list',
-  optFilmAuthorsSelector = '.film .film-author',
-  optAuthorsListSelector = '.authors.list',
-  optTagsListSelector = '.tags .list',
-  optCloudClassCount = '4',
-  optCloudClassPrefix = 'tag-size-';
+  FilmTagsSelector = '.film-tags .list',
+  filmAuthorsSelector = '.film .film-author',
+  futhorsListSelector = '.authors.list',
+  tagsListSelector = '.tags .list',
+  cloudClassCount = '4',
+  cloudClassPrefix = 'tag-size-'
+};
 
 function generateTitleLinks(customSelector = ''){
 
@@ -107,17 +118,45 @@ const links = document.querySelectorAll('.titles a');
     link.addEventListener('click', titleClickHandler);
   }
 
-/* CALCULATE TAG CLASS */
+/*CALCULATE TAGS PARAMS*/
+/*CALCULATE TAGS PARAMS*/
+/*CALCULATE TAGS PARAMS*/
+
+function calculateTagsParams(tags){
+
+  const params = {
+    max: '0',
+    min: '999999'
+  };
+
+  for(let tag in tags){
+    // console.log(tag + ' is used ' + tags[tag] + ' times');
+    
+    if (tags[tag] > params.max) {
+      params.max = tags[tag];
+    }
+    if (tags[tag] < params.min) {
+      params.min = tags[tag];
+    }
+
+    //params.max = Math.max(tags[tag], params.max);
+    //console.log(params.max)
+    //params.min = Math.min(tags[tag], params.min);
+  }
+  return params;
+}
+
+  /* CALCULATE TAG CLASS */
 
 function calculateTagClass (count, params) {
   const normalizedCount = count - params.min;
   const normalizedMax = params.max - params.min;
   const percentage = normalizedCount / normalizedMax;
-  classNumber = Math.floor( ( (count - params.min) / (params.max - params.min) ) * optCloudClassCount + 1 );
+  const classNumber = Math.floor(percentage * (optcloudClassCount - 1) + 1);
   const classValue = optcloudClassPrefix + classNumber;
   console.log(classValue);
+
   return classValue;
-  
 }
 
 /* GENERATING TAGS*/
@@ -439,24 +478,4 @@ function authorClickHandler(event){
   
       generateTitleLinks('[data-author="' + author + '"]');
   
-  }
-
-/*CALCULATE TAGS PARAMS*/
-/*CALCULATE TAGS PARAMS*/
-/*CALCULATE TAGS PARAMS*/
-
-  function calculateTagsParams(tags){
-
-    const params = {
-      max: '0',
-      min: '999999'
-    };
-
-    for(let tag in tags){
-      //console.log(tag + ' is used ' + tags[tag] + ' times');
-      
-      params.max = Math.max(tags[tag], params.max);
-      params.min = Math.min(tags[tag], params.min);
-    }
-    // return params;
   }
