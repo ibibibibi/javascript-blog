@@ -13,6 +13,12 @@ $font-header: 'Montserrat', sans-serif;
 $font-text: 'Raleway', sans-serif;
 $font-logo: 'Oxygen', sans-serif;
 
+$tag-fs1: 80%;
+$tag-fs2: 90%;
+$tag-fs3: 100%;
+$tag-fs4: 110%;
+$tag-fs5: 120%;
+
 /* Global */
 
 *, *::before, *::after {
@@ -115,7 +121,7 @@ a:hover {
   }
 }
 
-/* Post */
+/* film */
 
 .film {
   display: none;
@@ -145,4 +151,26 @@ a:hover {
     object-fit: cover;
     max-width: 100%;
   }
+}
+
+/*tags list*/
+
+.tag-size-1 {
+  font-size: $tag-fs1;
+}
+
+.tag-size-2 {
+  font-size: $tag-fs2;
+}
+
+.tag-size-3 {
+  font-size: $tag-fs3;
+}
+
+.tag-size-4 {
+  font-size: $tag-fs4;
+}
+
+.tag-size-5 {
+  font-size: $tag-fs5;
 }
