@@ -56,15 +56,15 @@ function titleClickHandler(event){
 //   optCloudClassPrefix = 'tag-size-';
 
 const opt = {
-  filmSelector: '.film',
-  titleSelector: '.film-title',
-  titleListSelector: '.titles',
-  filmTagsSelector: '.film-tags .list',
-  filmAuthorsSelector: '.film .film-author',
-  authorsListSelector: '.authors.list',
-  tagsListSelector: '.tags .list',
-  cloudClassCount: 4,
-  cloudClassPrefix: 'tag-size-'
+  filmSelector        : '.film',
+  titleSelector       : '.film-title',
+  titleListSelector   : '.titles',
+  filmTagsSelector    : '.film-tags .list',
+  filmAuthorsSelector : '.film .film-author',
+  authorsListSelector : '.authors.list',
+  tagsListSelector    : '.tags .list',
+  cloudClassCount     : 4,
+  cloudClassPrefix    : 'tag-size-'
 };
 
 function generateTitleLinks(customSelector = ''){
@@ -131,7 +131,7 @@ function calculateTagsParams(tags){
   };
 
   for(let tag in tags){
-    // console.log(tag + ' is used ' + tags[tag] + ' times');
+    console.log(tag + ' is used ' + tags[tag] + ' times ');
     
     if (tags[tag] > params.max) {
       params.max = tags[tag];
@@ -139,13 +139,35 @@ function calculateTagsParams(tags){
     if (tags[tag] < params.min) {
       params.min = tags[tag];
     }
-
+    return params;
     //params.max = Math.max(tags[tag], params.max);
     //console.log(params.max)
     //params.min = Math.min(tags[tag], params.min);
   }
-  return params;
+  
 }
+
+function calculateAuthorsParams(authors){
+
+  const params = {
+    max: '0',
+    min: '999999'
+  };
+
+  for(let author in authors){
+    console.log(author + ' is used ' + authors[author] + ' times ');
+    
+    if (authors[author] > params.max) {
+      params.max = tags[tag];
+    }
+    if (authors[author] < params.min) {
+      params.min = tags[tag];
+    }
+    return params;
+  }
+  
+}
+
 
   /* CALCULATE TAG CLASS */
 
@@ -155,8 +177,15 @@ function calculateTagClass (count, params) {
   const percentage = normalizedCount / normalizedMax;
   const classNumber = Math.floor(percentage * (opt.cloudClassCount - 1) + 1);
   const classValue = opt.cloudClassPrefix + classNumber;
-  console.log(classValue);
+  return classValue;
+}
 
+function calculateAuthorClass (count, params) {
+  const normalizedCount = count - params.min;
+  const normalizedMax = params.max - params.min;
+  const percentage = normalizedCount / normalizedMax;
+  const classNumber = Math.floor(percentage * (opt.cloudClassCount - 1) + 1);
+  const classValue = opt.cloudClassPrefix + classNumber;
   return classValue;
 }
 
@@ -234,7 +263,7 @@ function generateTags(){
       /* [NEW][NEW] create var for all links HTML code*/
 
         const tagsParams = calculateTagsParams(allTags);
-        //console.log('tagsParams:', tagsParams);
+        console.log('tagsParams:', tagsParams);
 
         let allTagsHTML = '';
 
@@ -352,12 +381,12 @@ addClickListenersToTags();
 /*GENERATING AUTHORS*/
 
 function generateAuthors() {
+  
+  /* [NEW] create a new variable allAuthors with an empty array */
 
   let allAuthors = {};
 
-  /* find all films */
-  
-    const authorsList = document.querySelector(opt.authorsListSelector);
+  /* find all authors */
     
     const films = document.querySelectorAll(opt.filmSelector);
     //console.log(films);
@@ -412,6 +441,8 @@ function generateAuthors() {
     for(let author in allAuthors){
       authorsHtml += '<li><a href="#author-' + author + '">' + author + '</a></li>'
     }
+
+  const authorsList = document.querySelector(opt.authorsListSelector);
 
   authorsList.innerHTML = authorsHtml;
 
