@@ -131,7 +131,7 @@ function calculateTagsParams(tags){
   };
 
   for(let tag in tags){
-    console.log(tag + ' is used ' + tags[tag] + ' times ');
+    // console.log(tag + ' is used ' + tags[tag] + ' times ');
     
     if (tags[tag] > params.max) {
       params.max = tags[tag];
@@ -139,12 +139,12 @@ function calculateTagsParams(tags){
     if (tags[tag] < params.min) {
       params.min = tags[tag];
     }
-    return params;
+    
     //params.max = Math.max(tags[tag], params.max);
     //console.log(params.max)
     //params.min = Math.min(tags[tag], params.min);
   }
-  
+  return params;
 }
 
 function calculateAuthorsParams(authors){
@@ -179,6 +179,8 @@ function calculateTagClass (count, params) {
   const classValue = opt.cloudClassPrefix + classNumber;
   return classValue;
 }
+
+/* CALCULATE AUTHOR CLASS */
 
 function calculateAuthorClass (count, params) {
   const normalizedCount = count - params.min;
@@ -263,7 +265,7 @@ function generateTags(){
       /* [NEW][NEW] create var for all links HTML code*/
 
         const tagsParams = calculateTagsParams(allTags);
-        console.log('tagsParams:', tagsParams);
+        // console.log('tagsParams:', tagsParams);
 
         let allTagsHTML = '';
 
