@@ -64,7 +64,9 @@ const opt = {
   authorsListSelector : '.authors.list',
   tagsListSelector    : '.tags .list',
   cloudClassCount     : 4,
-  cloudClassPrefix    : 'tag-size-'
+  cloudClassPrefix    : 'tag-size-',
+  cloudClassCountAuthor     : 3,
+  cloudClassPrefixAuthor    : 'tag-size-'
 };
 
 function generateTitleLinks(customSelector = ''){
@@ -155,17 +157,16 @@ function calculateAuthorsParams(authors){
   };
 
   for(let author in authors){
-    console.log(author + ' is used ' + authors[author] + ' times ');
+  //console.log(author + ' is used ' + authors[author] + ' times ');
     
     if (authors[author] > params.max) {
-      params.max = tags[tag];
+      params.max = authors[author];
     }
     if (authors[author] < params.min) {
-      params.min = tags[tag];
-    }
-    return params;
+      params.min = authors[author];
+    } 
   }
-  
+  return params;
 }
 
 
@@ -186,8 +187,8 @@ function calculateAuthorClass (count, params) {
   const normalizedCount = count - params.min;
   const normalizedMax = params.max - params.min;
   const percentage = normalizedCount / normalizedMax;
-  const classNumber = Math.floor(percentage * (opt.cloudClassCount - 1) + 1);
-  const classValue = opt.cloudClassPrefix + classNumber;
+  const classNumber = Math.floor(percentage * (opt.cloudClassCountAuthor - 1) + 1);
+  const classValue = opt.cloudClassPrefixAuthor + classNumber;
   return classValue;
 }
 
@@ -229,8 +230,8 @@ function generateTags(){
 
       /* START LOOP: for each tag */
 
-        for(let tag of filmTagsArray){
-          // console.log(tag)
+      for(let tag of filmTagsArray){
+      // console.log(tag)
   
         /* generate HTML of the link */
   
@@ -242,19 +243,17 @@ function generateTags(){
         html = html + linkHTML;
         // console.log(html);
         //console.log (allTags);
+        
         /* [NEW] check if this link is NOT already in allTags */
       
           if(!allTags.hasOwnProperty(tag)){
         
-          /* [NEW] add generated code to allTags array */
-            
+            /* [NEW] add generated code to allTags array */
+
             allTags[tag] = 1;
-        } else {
-
-          allTags[tag]++;
-
-        }
-      
+            } else {
+            allTags[tag]++;
+          }
       /* END LOOP: for each tag */
       }
 
@@ -278,7 +277,7 @@ function generateTags(){
           //const tagLinkHTML = '<li>' + calculateTagClass(allTags[tag], tagsParams) + '</li>';
           //console.log('tagLinkHTML:', tagLinkHTML);
           const tagClass = calculateTagClass(allTags[tag], tagsParams);
-          console.log('tagClass', tagClass)
+          //console.log('tagClass', tagClass)
 
           allTagsHTML += '<li><a class="' + tagClass + '" href="#tag-' + tag + '">' + tag + ' (' + allTags[tag] + ') ' + '</a></li>';
 
@@ -394,8 +393,6 @@ function generateAuthors() {
     const films = document.querySelectorAll(opt.filmSelector);
     //console.log(films);
 
-  
-
   /* START LOOP: for every film: */
   
     for(let film of films){
@@ -422,8 +419,6 @@ function generateAuthors() {
           allAuthors[author]++;
         }
 
-      
-
       /* generate author name under the film title */
         //html = html + linkHTML;
        // console.log(html)
@@ -437,17 +432,28 @@ function generateAuthors() {
     /* END LOOP: for every film: */
     }
 
+/* [NEW][NEW] create var for all links HTML code*/
+
+    const authorsParams = calculateAuthorsParams(allAuthors);
+    console.log('authorsParams:', authorsParams);
+    
     /* make html variable with empty string */
 
-    let authorsHtml = '';
+    let authorsHTML = '';
+
+  /* START LOOP: for each author */
 
     for(let author in allAuthors){
-      authorsHtml += '<li><a href="#author-' + author + '">' + author + '</a></li>'
+      
+      const authorsClass = calculateAuthorClass(allAuthors[author], authorsParams);
+      console.log('authorsClass:', authorsClass);
+
+      authorsHTML += '<li><a class"' + authorsClass + '" href="#author-' + author + '">' + author + ' (' + allAuthors[author] + ') ' + '</a></li>'
     }
 
   const authorsList = document.querySelector(opt.authorsListSelector);
 
-  authorsList.innerHTML = authorsHtml;
+  authorsList.innerHTML = authorsHTML;
 
   const authors = document.querySelectorAll('.authors a')
   //console.log (authors);
