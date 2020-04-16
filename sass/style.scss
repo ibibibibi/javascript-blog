@@ -17,7 +17,11 @@ $tag-fs1: 80%;
 $tag-fs2: 90%;
 $tag-fs3: 100%;
 $tag-fs4: 110%;
-$tag-fs5: 120%;
+
+$author-fs1: 80%;
+$author-fs2: 90%;
+$author-fs3: 100%;
+
 
 /* Global */
 
@@ -173,4 +177,26 @@ a:hover {
 
 .tag-size-5 {
   font-size: $tag-fs5;
+}
+
+/*authors list*/
+
+.author-size-1 {
+  font-size: $author-fs1;
+}
+
+.author-size-2 {
+  font-size: $author-fs2;
+}
+
+.author-size-3 {
+  font-size: $author-fs3;
+}
+
+.author-size-4 {
+  font-size: $author-fs4;
+}
+
+.author-size-5 {
+  font-size: $author-fs5;
 }

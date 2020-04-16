@@ -66,7 +66,7 @@ const opt = {
   cloudClassCount     : 4,
   cloudClassPrefix    : 'tag-size-',
   cloudClassCountAuthor     : 3,
-  cloudClassPrefixAuthor    : 'tag-size-'
+  cloudClassPrefixAuthor    : 'author-size-'
 };
 
 function generateTitleLinks(customSelector = ''){
