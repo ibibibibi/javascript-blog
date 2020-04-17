@@ -3,7 +3,7 @@
 function titleClickHandler(event){
   event.preventDefault();
   const clickedElement = this;
-  // console.log('Link was clicked!');
+  console.log('Link was clicked!');
   // console.log(clickedElement);
   // console.log(event);
 
@@ -44,16 +44,6 @@ function titleClickHandler(event){
 }
 
 /*GENERATING TITLE LINKS*/
-
-// const optFilmSelector = '.film',
-//   optTitleSelector = '.film-title',
-//   optTitleListSelector = '.titles',
-//   optFilmTagsSelector = '.film-tags .list',
-//   optFilmAuthorsSelector = '.film .film-author',
-//   optAuthorsListSelector = '.authors.list',
-//   optTagsListSelector = '.tags .list',
-//   optCloudClassCount = '4',
-//   optCloudClassPrefix = 'tag-size-';
 
 const opt = {
   filmSelector        : '.film',
@@ -110,6 +100,11 @@ function generateTitleLinks(customSelector = ''){
     }
 
     titleList.innerHTML = html;
+
+    const links = document.querySelectorAll('.titles a');
+      for (let link of links) {
+        link.addEventListener('click', titleClickHandler);
+      }
       
 }
 generateTitleLinks();
@@ -448,7 +443,7 @@ function generateAuthors() {
       const authorsClass = calculateAuthorClass(allAuthors[author], authorsParams);
       console.log('authorsClass:', authorsClass);
 
-      authorsHTML += '<li><a class"' + authorsClass + '" href="#author-' + author + '">' + author + ' (' + allAuthors[author] + ') ' + '</a></li>'
+      authorsHTML += '<li><a class="' + authorsClass + '" href="#author-' + author + '">' + author + ' (' + allAuthors[author] + ') ' + '</a></li>'
     }
 
   const authorsList = document.querySelector(opt.authorsListSelector);
@@ -468,7 +463,7 @@ generateAuthors();
 
 function authorClickHandler(event){
   /* prevent default action for this event */
-  
+  console.log('@@@')
     event.preventDefault();
   
     /* make new constant named "clickedElement" and give it the value of "this" */

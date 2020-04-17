@@ -149,4 +149,25 @@ a:hover {
 .tag-size-5 {
   font-size: 120%;
 }
+
+/*authors list*/
+.author-size-1 {
+  font-size: 80%;
+}
+
+.author-size-2 {
+  font-size: 90%;
+}
+
+.author-size-3 {
+  font-size: 100%;
+}
+
+.author-size-4 {
+  font-size: 110%;
+}
+
+.author-size-5 {
+  font-size: 120%;
+}
 /*# sourceMappingURL=style.css.map */
