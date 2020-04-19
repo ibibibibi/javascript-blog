@@ -4,7 +4,7 @@ const templates = {
   filmLink:   Handlebars.compile(document.querySelector('#template-film-link').innerHTML),
   tagLink:    Handlebars.compile(document.querySelector('#template-tag-link').innerHTML),
   authorLink: Handlebars.compile(document.querySelector('#template-author-link').innerHTML),
-  //tagCloudLink: 
+  tagCloudLink: Handlebars.compile(document.querySelector('#template-tagCloud-link').innerHTML)
 }
 
 function titleClickHandler(event){
@@ -264,7 +264,7 @@ function generateTags(){
 
     const tagsParams = calculateTagsParams(allTags);
 
-    //let allTagsHTML = '';
+    let allTagsHTML = '';
     /* NEW NEW NEW HANDLEBARS */
     const allTagsData = {tags: []};
 
