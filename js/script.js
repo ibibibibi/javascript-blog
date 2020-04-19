@@ -5,7 +5,7 @@ const templates = {
   tagLink:    Handlebars.compile(document.querySelector('#template-tag-link').innerHTML),
   authorLink: Handlebars.compile(document.querySelector('#template-author-link').innerHTML),
   tagCloudLink: Handlebars.compile(document.querySelector('#template-tagCloud-link').innerHTML),
-  tagCloudLink: Handlebars.compile(document.querySelector('#template-authorCloud-link').innerHTML)
+  authorCloudLink: Handlebars.compile(document.querySelector('#template-authorCloud-link').innerHTML)
 }
 
 function titleClickHandler(event){
