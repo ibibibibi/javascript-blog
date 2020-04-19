@@ -1,5 +1,12 @@
 'use strict';
 
+const templates = {
+  filmLink:   Handlebars.compile(document.querySelector('#template-film-link').innerHTML),
+  tagLink:    Handlebars.compile(document.querySelector('#template-tag-link').innerHTML),
+  authorLink: Handlebars.compile(document.querySelector('#template-author-link').innerHTML),
+  tagCloudLink: 
+}
+
 function titleClickHandler(event){
 
   event.preventDefault();
@@ -39,6 +46,8 @@ function titleClickHandler(event){
   targetFilm.classList.add('active');
 }
 
+/*GENERATING TITLE LINKS*/
+/*GENERATING TITLE LINKS*/
 /*GENERATING TITLE LINKS*/
 
 const opt = {
@@ -83,7 +92,10 @@ function generateTitleLinks(customSelector = ''){
 
     /* create HTML of the link */
 
-    const linkHTML = '<li><a href="#' + filmId + ' "><span> ' + filmTitle + ' </span></a></li>';
+    //const linkHTML = '<li><a href="#' + filmId + ' "><span> ' + filmTitle + ' </span></a></li>';
+    /* NEW NEW NEW HANDLEBARS */
+    const linkHTMLData = {id: filmId, title: filmTitle};
+    const linkHTML = templates.filmLink(linkHTMLData);
 
     /* insert link into titleList */
 
@@ -110,7 +122,6 @@ for(let link of links){
 
 /*CALCULATE TAGS PARAMS*/
 /*CALCULATE TAGS PARAMS*/
-/*CALCULATE TAGS PARAMS*/
 
 function calculateTagsParams(tags){
 
@@ -134,6 +145,9 @@ function calculateTagsParams(tags){
   return params;
 }
 
+/*CALCULATE AUTHORS PARAMS*/
+/*CALCULATE AUTHORS PARAMS*/
+
 function calculateAuthorsParams(authors){
 
   const params = {
@@ -156,6 +170,7 @@ function calculateAuthorsParams(authors){
 
 
 /* CALCULATE TAG CLASS */
+/* CALCULATE TAG CLASS */
 
 function calculateTagClass (count, params) {
   const normalizedCount = count - params.min;
@@ -167,6 +182,7 @@ function calculateTagClass (count, params) {
 }
 
 /* CALCULATE AUTHOR CLASS */
+/* CALCULATE AUTHOR CLASS */
 
 function calculateAuthorClass (count, params) {
   const normalizedCount = count - params.min;
@@ -177,6 +193,8 @@ function calculateAuthorClass (count, params) {
   return classValue;
 }
 
+/* GENERATING TAGS*/
+/* GENERATING TAGS*/
 /* GENERATING TAGS*/
 
 function generateTags(){
@@ -215,7 +233,11 @@ function generateTags(){
 
       /* generate HTML of the link */
 
-      const linkHTML = '<li><a href="#tag-' + tag + '"><span> ' + tag + ' </span></a></li>';
+      //const linkHTML = '<li><a href="#tag-' + tag + '"><span> ' + tag + ' </span></a></li>';
+      /* NEW NEW NEW HANDLEBARS */
+      const linkHTMLData = {tag: tag};
+      const linkHTML = templates.tagLink(linkHTMLData);
+
 
       /* add generated code to html variable */
 
@@ -243,6 +265,8 @@ function generateTags(){
     const tagsParams = calculateTagsParams(allTags);
 
     let allTagsHTML = '';
+    /* NEW NEW NEW HANDLEBARS */
+    // //const allTagsData = {tags: []};
 
     /* [NEW][NEW] START LOOP: for each tag in allTags */
       
@@ -252,14 +276,30 @@ function generateTags(){
 
       const tagClass = calculateTagClass(allTags[tag], tagsParams);
 
-      allTagsHTML += '<li><a class="' + tagClass + '" href="#tag-' + tag + '">' + tag + ' (' + allTags[tag] + ') ' + '</a></li>';
-          
+      const tagLinkHTML = '<li><a class="' + tagClass + '" href="#tag-' + tag + '">' + tag + ' (' + allTags[tag] + ') ' + '</a></li>';
+      
+      allTagsHTML += tagLinkHTML
+
+      /* NEW NEW NEW HANDLEBARS */
+      
+      // //allTagsData.tags.push({
+      //  tag: tag,
+      //  count: allTags[tag],
+      //  className: calculateTagClass(allTags[tag], tagsParams)
+      //});    
+
+
     /* [NEW][NEW] END LOOP: for each tag in allTags: */
     }
       
     /* [NEW][NEW] add html from allTags to tagList */
 
     tagList.innerHTML = allTagsHTML;
+
+    /* NEW NEW NEW HANDLEBARS */
+
+    // //tagList.innerHTML = templates.tagCloudLink(allTagsData);
+    //console.log(allTagsData);
 
     /* insert HTML of all the links into the tags wrapper */
       
@@ -372,7 +412,10 @@ function generateAuthors() {
 
     /* generate HTML of the link */
 
-    const linkHTML = '<li><a href="#author-' + author + '">' + author + '</a></li>';
+    //const linkHTML = '<li><a href="#author-' + author + '">' + author + '</a></li>';
+    /* NEW NEW NEW HANDLEBARS */
+    const linkHTMLData = {author: author};
+    const linkHTML = templates.authorLink(linkHTMLData);
 
     /* check if author is not already on the list */
     

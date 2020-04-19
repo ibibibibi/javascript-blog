@@ -139,7 +139,7 @@
             </div>
           </article>
           <article class="film" id="film-9" data-tags="LGBT secret-love Xavier-Dolan" data-author="Xavier Dolan">
-            <h3 class="film-title">Matthieu & Maxime (2019)</h3>
+            <h3 class="film-title">Matthieu et Maxime (2019)</h3>
             <p class="film-author"></p>
             <div class="film-content">
               <p>A drama focusing on a group of friends in their late 20s.</p>
@@ -225,9 +225,22 @@
       </main>
     </div>
   </div> 
-<script id="template-article-link" type="text/x-handlebars-template">
+<script id="template-film-link" type="text/x-handlebars-template">
   <li><a href="#{{ id }}"><span>{{ title }}</span></a></li>
 </script>
+
+<script id="template-tag-link" type="text/x-handlebars-template">
+  <li><a href="#tag-{{ tag }}"><span>{{ tag }}</span></a></li>
+</script>
+
+<script id="template-author-link" type="text/x-handlebars-template">
+  <li><a href="#author-{{ author }}">{{ author }}</a></li>
+</script>
+
+<script id="template-tagCloud-link" type="text/x-handlebars-template">
+  
+</script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
 <script src="js/script.js"></script>
 </body>
