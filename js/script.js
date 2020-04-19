@@ -4,7 +4,7 @@ const templates = {
   filmLink:   Handlebars.compile(document.querySelector('#template-film-link').innerHTML),
   tagLink:    Handlebars.compile(document.querySelector('#template-tag-link').innerHTML),
   authorLink: Handlebars.compile(document.querySelector('#template-author-link').innerHTML),
-  tagCloudLink: 
+  //tagCloudLink: 
 }
 
 function titleClickHandler(event){
@@ -264,9 +264,9 @@ function generateTags(){
 
     const tagsParams = calculateTagsParams(allTags);
 
-    let allTagsHTML = '';
+    //let allTagsHTML = '';
     /* NEW NEW NEW HANDLEBARS */
-    // //const allTagsData = {tags: []};
+    const allTagsData = {tags: []};
 
     /* [NEW][NEW] START LOOP: for each tag in allTags */
       
@@ -282,11 +282,11 @@ function generateTags(){
 
       /* NEW NEW NEW HANDLEBARS */
       
-      // //allTagsData.tags.push({
-      //  tag: tag,
-      //  count: allTags[tag],
-      //  className: calculateTagClass(allTags[tag], tagsParams)
-      //});    
+      allTagsData.tags.push({
+       tag: tag,
+       count: allTags[tag],
+       className: calculateTagClass(allTags[tag], tagsParams)
+      });    
 
 
     /* [NEW][NEW] END LOOP: for each tag in allTags: */
@@ -294,12 +294,12 @@ function generateTags(){
       
     /* [NEW][NEW] add html from allTags to tagList */
 
-    tagList.innerHTML = allTagsHTML;
+    //tagList.innerHTML = allTagsHTML;
 
     /* NEW NEW NEW HANDLEBARS */
 
-    // //tagList.innerHTML = templates.tagCloudLink(allTagsData);
-    //console.log(allTagsData);
+    tagList.innerHTML = templates.tagCloudLink(allTagsData);
+    console.log(allTagsData);
 
     /* insert HTML of all the links into the tags wrapper */
       
