@@ -4,7 +4,8 @@ const templates = {
   filmLink:   Handlebars.compile(document.querySelector('#template-film-link').innerHTML),
   tagLink:    Handlebars.compile(document.querySelector('#template-tag-link').innerHTML),
   authorLink: Handlebars.compile(document.querySelector('#template-author-link').innerHTML),
-  tagCloudLink: Handlebars.compile(document.querySelector('#template-tagCloud-link').innerHTML)
+  tagCloudLink: Handlebars.compile(document.querySelector('#template-tagCloud-link').innerHTML),
+  tagCloudLink: Handlebars.compile(document.querySelector('#template-authorCloud-link').innerHTML)
 }
 
 function titleClickHandler(event){
@@ -438,20 +439,39 @@ function generateAuthors() {
     
   /* make html variable with empty string */
 
-  let authorsHTML = '';
+  //let authorsHTML = '';
+  /* NEW NEW NEW HANDLEBARS */
+  const allAuthorsData = {authors: [] };
 
   /* START LOOP: for each author */
 
-    for(let author in allAuthors){
+  for(let author in allAuthors){
       
-      const authorsClass = calculateAuthorClass(allAuthors[author], authorsParams);
+    const authorsClass = calculateAuthorClass(allAuthors[author], authorsParams);
 
-      authorsHTML += '<li><a class="' + authorsClass + '" href="#author-' + author + '">' + author + ' (' + allAuthors[author] + ') ' + '</a></li>';
+    const authorsHTML = '<li><a class="' + authorsClass + '" href="#author-' + author + '">' + author + ' (' + allAuthors[author] + ') ' + '</a></li>';
+  
+
+ // //allAuthorsHTML += authorsHTML
+
+
+    /* NEW NEW NEW HANDLEBARS */
+    allAuthorsData.authors.push({
+      author: author,
+      count: allAuthors[author],
+      className: calculateAuthorClass(allAuthors[author], authorsParams)
+     }); 
+
+  /* END LOOP: for each author */
   }
 
-  const authorsList = document.querySelector(opt.authorsListSelector);
+  const authorList = document.querySelector(opt.authorsListSelector);
 
-  authorsList.innerHTML = authorsHTML;
+  //authorsList.innerHTML = authorsHTML;
+  /* NEW NEW NEW HANDLEBARS */
+
+  authorList.innerHTML = templates.authorCloudLink(allAuthorsData);
+  console.log(allAuthorsData);
 
   const authors = document.querySelectorAll('.authors a');
 
